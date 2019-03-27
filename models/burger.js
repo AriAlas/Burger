@@ -7,14 +7,15 @@ var burger = {
             cb(res);
         });
     },
-    create: function(vals, cb) {
-        orm.create("burgers", ['burger_name'], vals, function(res) {
+    create: function(cols, vals, cb) {
+        orm.create("burgers", cols, vals, function(res) {
             cb(res);
         });
     },
-    update: function(objColVals, condition, cb) {
-        objColVals.date = new Date().toISOString().slice(0, 19).replace('T', ' ');
-        orm.update("burgers", objColVals, condition, function(res) {
+    update: function(vals, condition, cb) {
+        // objColVals, 
+        // objColVals.date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+        orm.update("burgers", vals, condition, function(res) {
             cb(res);
         });
     },
