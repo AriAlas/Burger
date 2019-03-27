@@ -11,6 +11,8 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
+
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 
@@ -21,6 +23,14 @@ app.set("view engine", "handlebars");
 var routes = require("./controllers/burgers_controllers");
 
 app.use(routes);
+
+// Timeout
+app.use(timeout(15000));
+app.use(haltOnTimedout);
+
+function haltOnTimedout(req, res, next) {
+    if (!req.timedout) next();
+}
 
 app.listen(PORT, function(){
     console.log("Server listening on: http://localhost:" + PORT);
